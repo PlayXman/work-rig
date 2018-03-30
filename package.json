@@ -20,12 +20,5 @@
 		"imagemin-jpeg-recompress": "^5.1.0",
 		"imagemin-pngquant": "^5.0.1",
 		"gulp-mustache": "^3.0.1"
-	},
-	"scripts": {
-		"css": "node_modules/.bin/gulp css:dev",
-		"js": "node_modules/.bin/gulp js:dev",
-		"build": "node_modules/.bin/gulp build",
-		"watch": "node_modules/.bin/gulp watch",
-		"test": "echo \"It works!\""
 	}
 }
