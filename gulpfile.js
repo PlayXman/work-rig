@@ -18,7 +18,7 @@ const autoprefix = new LessAutoprefix({browsers: ['last 2 versions', 'ie >= 11']
 
 const paths = {
 	css: {
-		source: 'src/css/*.less',
+		source: 'src/css/style.less',
 		watch: ['src/components/**/*.less', 'src/css/*.less'],
 		target: 'build/css'
 	},
@@ -85,6 +85,11 @@ gulp.task('css:build', function () {
 		.pipe(gulp.dest(paths.css.target));
 });
 
+gulp.task('css:build:hotFix', function () {
+	return gulp.src('src/css/hot-fix.css')
+		.pipe(gulp.dest(paths.css.target));
+});
+
 gulp.task('js:dev', function () {
 	return gulp.src(paths.js.source)
 		.pipe(sourcemaps.init())
@@ -136,7 +141,7 @@ gulp.task('html', function () {
 		.pipe(gulp.dest(paths.html.target));
 });
 
-gulp.task('build', ['html', 'css:build', 'js:build', 'image:min']);
+gulp.task('build', ['html', 'css:build', 'css:build:hotFix', 'js:build', 'image:min']);
 
 gulp.task('watch', ['html', 'css:dev', 'js:dev'], function () {
 	watch(paths.html.watch, function () {
