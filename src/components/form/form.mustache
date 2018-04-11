@@ -1,0 +1,83 @@
+<form id="form" action="?" method="post">
+	<div>
+		<label class="form__headding" for="form-name">Jméno</label>
+		<input id="form-name" type="text" name="name" required>
+	</div>
+	<div>
+		<label class="form__headding" for="form-pass">Heslo</label>
+		<input id="form-pass" type="password" name="pass" required>
+	</div>
+
+	<div>
+		<label class="form__headding" for="form-textarea">textarea</label>
+		<textarea id="form-textarea" rows="4" cols="16" required>This is a textarea.</textarea>
+	</div>
+
+	<div>
+		<label class="form__headding" for="form-checkbox1">checkbox</label>
+		<div class="form__inLine"><input id="form-checkbox1" type="checkbox" name="checkbox" required>
+			<label for="form-checkbox1">Ano</label>
+			<input id="form-checkbox2" type="checkbox" name="checkbox" required>
+			<label for="form-checkbox2">Ne</label>
+		</div>
+	</div>
+	<div>
+		<label class="form__headding" for="form-date">date</label>
+		<input id="form-date" type="date" name="date" required>
+	</div>
+	<div>
+		<label class="form__headding" for="form-radio1">radio</label>
+		<div class="form__inLine"><input id="form-radio1" type="radio" name="radio" required>
+			<label for="form-radio1">Ano</label>
+			<input id="form-radio2" type="radio" name="radio" required>
+			<label for="form-radio2">Ne</label>
+		</div>
+	</div>
+
+	<div>
+		<label class="form__headding" for="form-email">email</label>
+		<input id="form-email" type="email" name="email" required>
+	</div>
+	<div>
+		<label class="form__headding" for="form-tel">tel</label>
+		<input id="form-tel" type="tel" name="tel" required>
+	</div>
+
+	<div>
+		<label class="form__headding" for="form-file">file</label>
+		<input id="form-file" type="file" name="file" required>
+	</div>
+
+	<div>
+		<label class="form__headding" for="form-number">number</label>
+		<input id="form-number" type="number" name="number" required>
+	</div>
+	<div>
+		<label class="form__headding" for="form-range">range</label>
+		<input id="form-range" type="range" name="range" required>
+	</div>
+
+	<div>
+		<label class="form__headding" for="form-select">Select</label>
+		<select id="form-select" name="select" required>
+			<option value="" disabled selected>Select your option</option>
+			<option value="1">Opt 1</option>
+			<option value="2">Opt 2</option>
+		</select>
+	</div>
+
+	<div>
+		<script src="https://www.google.com/recaptcha/api.js" async defer></script><!--POZOR! Jen ukazka-->
+		<div class="g-recaptcha" data-sitekey="6Le-wvkSAAAAAPBMRTvw0Q4Muexq9bi0DJwx_mJ-"></div>
+	</div>
+
+	<div>
+		<button>Přidat</button>
+		<input type="button" value="Odebrat">
+	</div>
+
+	<div>
+		<input type="reset" value="Reset">
+		<input id="form__submit" type="submit" value="Přihlásit">
+	</div>
+</form>

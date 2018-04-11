@@ -1,0 +1,159 @@
+.form {
+	&__headding {
+		display: block;
+		font-weight: normal;
+	}
+
+	&__inLine {
+		padding-top: 0.6em;
+		padding-bottom: 0.6em;
+
+		label:not(.form__headding) {
+			margin-right: 0.8rem;
+		}
+	}
+
+	&__item {
+		position: relative;
+		margin-bottom: 2rem;
+	}
+
+	&__err--msg {
+		pointer-events: none;
+		font-size: 0.7rem;
+		color: @color__red;
+		margin-top: 0.2rem;
+	}
+}
+
+form {
+	.g-recaptcha {
+		display: flex;
+		justify-content: center;
+		margin-bottom: 2rem;
+
+		@media (max-width: 400px) {
+			transform-origin: 50% 0;
+			transform: scale(0.8);
+		}
+	}
+
+	.btn {
+		background: none;
+		margin: 0 0.5rem 2rem;
+	}
+}
+
+input {
+	&[type=text],
+	&[type=password],
+	&[type=date],
+	&[type=email],
+	&[type=search],
+	&[type=number],
+	&[type=tel] {
+		display: block;
+		width: 100%;
+		margin-bottom: 0;
+		font-weight: 300;
+		padding: 0.6em 0.8em;
+		color: inherit;
+		border: 2px solid @color__grey;
+
+		&.err {
+			border-color: @color__red;
+		}
+	}
+
+	&[type=file] {
+		display: block;
+		width: 100%;
+		margin-bottom: 0;
+		font-weight: 300;
+		padding: 0.6em 0.8em;
+		color: @color__black;
+		background: @color__grey;
+		border: 2px solid @color__grey;
+
+		&.err {
+			border-color: @color__red;
+		}
+	}
+
+	&[type=checkbox],
+	&[type=radio] {
+		display: inline-block;
+		vertical-align: middle;
+		margin-right: 0.2rem;
+
+		&.err {
+			box-shadow: 0 0 5px 0 @color__red;
+		}
+	}
+
+	&[type=range] {
+		display: block;
+		width: 100%;
+		margin-bottom: 0;
+	}
+
+	&[type=submit],
+	&[type=button],
+	&[type=reset] {
+		cursor: pointer;
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+	&:focus {
+		outline: none;
+	}
+}
+
+button {
+	cursor: pointer;
+
+	&:focus {
+		outline: none;
+	}
+}
+
+textarea {
+	display: block;
+	width: 100%;
+	min-height: 100px;
+	margin-bottom: 0;
+	font-weight: 300;
+	padding: 0.6em 0.8em;
+	color: inherit;
+	border: 2px solid @color__grey;
+
+	&:focus {
+		outline: none;
+	}
+
+	&.err {
+		border-color: @color__red;
+	}
+}
+
+select {
+	display: block;
+	width: 100%;
+	margin-bottom: 0;
+	font-weight: 300;
+	padding: 0.6em 0.8em;
+	color: inherit;
+	border: 2px solid @color__grey;
+	background: @color__white;
+
+	&:focus {
+		outline: none;
+	}
+
+	&.err {
+		border-color: @color__red;
+	}
+}
