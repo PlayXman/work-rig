@@ -1,24 +1,23 @@
 {
 	"name": "build-rig-playxman",
-	"version": "1.0.2",
+	"version": "2.0.0",
 	"description": "Watchers for LESS and JS.",
 	"author": "PlayXman",
 	"private": true,
 	"main": "gulpfile.js",
 	"dependencies": {},
 	"devDependencies": {
-		"gulp": "^3.9.1",
-		"gulp-clean-css": "^3.8.0",
+		"gulp": "^4.0.2",
+		"gulp-clean-css": "^4.3.0",
 		"gulp-concat": "^2.6.1",
-		"gulp-imagemin": "^4.0.0",
-		"gulp-less": "^3.3.2",
-		"gulp-mustache": "^3.0.1",
-		"gulp-rename": "^1.2.2",
-		"gulp-sourcemaps": "^2.6.1",
-		"gulp-uglify": "^3.0.0",
-		"gulp-watch": "^4.3.11",
-		"imagemin-jpeg-recompress": "^5.1.0",
-		"imagemin-pngquant": "^5.0.1",
-		"less-plugin-autoprefix": "^1.5.1"
+		"gulp-imagemin": "^7.1.0",
+		"gulp-less": "^4.0.1",
+		"gulp-mustache": "^5.0.0",
+		"gulp-rename": "^2.0.0",
+		"gulp-sourcemaps": "^3.0.0",
+		"gulp-uglify": "^3.0.2",
+		"imagemin-jpeg-recompress": "^7.0.0",
+		"imagemin-pngquant": "^9.0.2",
+		"less-plugin-autoprefix": "^2.0.0"
 	}
 }
