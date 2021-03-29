@@ -1,6 +1,5 @@
 const gulp = require('gulp');
 const rename = require('gulp-rename');
-const watch = require('gulp-watch');
 const sourcemaps = require('gulp-sourcemaps');
 const less = require('gulp-less');
 const LessAutoprefix = require('less-plugin-autoprefix');
@@ -14,7 +13,7 @@ const mustache = require('gulp-mustache');
 
 /* ################################################## Settings ###################################################### */
 
-const autoprefix = new LessAutoprefix({browsers: ['last 2 versions', 'ie >= 11']});
+const autoprefix = new LessAutoprefix({browsers: ['last 2 versions']});
 
 const paths = {
 	css: {
@@ -70,94 +69,94 @@ const errorHandlers = {
 
 /* ################################################## Tasks ######################################################### */
 
-gulp.task('css:dev', function () {
+function css_dev() {
 	return gulp.src(paths.css.source)
 		.pipe(sourcemaps.init())
 		.pipe(less().on('error', errorHandlers.css))
 		.pipe(rename({suffix: '.min'}))
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest(paths.css.target));
-});
+}
 
-gulp.task('css:build', function () {
+function css_build() {
 	return gulp.src(paths.css.source)
-        .pipe(sourcemaps.init())
+		.pipe(sourcemaps.init())
 		.pipe(less({plugins: [autoprefix]}).on('error', errorHandlers.css))
 		.pipe(cleanCss())
 		.pipe(rename({suffix: '.min'}))
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest(paths.css.target));
-});
+}
 
-gulp.task('css:build:hotFix', function () {
-	return gulp.src('src/css/hot-fix.css')
-		.pipe(gulp.dest(paths.css.target));
-});
-
-gulp.task('js:dev', function () {
+function js_dev() {
 	return gulp.src(paths.js.source)
 		.pipe(concat('script.min.js'))
 		.pipe(gulp.dest(paths.js.target));
-});
+}
 
-gulp.task('js:build', function () {
+function js_build() {
 	return gulp.src(paths.js.source)
-        .pipe(concat('script.min.js'))
+		.pipe(concat('script.min.js'))
 		.pipe(uglify().on('error', errorHandlers.js))
 		.pipe(gulp.dest(paths.js.target));
-});
+}
 
-gulp.task('image:min', function() {
-    return gulp.src(paths.images.source)
-        .pipe(imagemin([
-            imageminJpegRecompress({ //jpg
-                loops: 4,
-                min: 60,
-                max: 90,
-                quality:'high'
-            }),
-            imageminPngquant({ //png
-                speed: 3,
-                quality: 90 //lossy settings
-            }),
-            imagemin.svgo({ //svg
-                plugins: [{
-                    removeViewBox: false
+function image_min() {
+	return gulp.src(paths.images.source)
+		.pipe(imagemin([
+			imageminJpegRecompress({ //jpg
+				loops: 4,
+				min: 60,
+				max: 90,
+				quality: 'high'
+			}),
+			imageminPngquant({ //png
+				speed: 3,
+				quality: 90 //lossy settings
+			}),
+			imagemin.svgo({ //svg
+				plugins: [{
+					removeViewBox: false
 				}, {
-                    cleanupIDs: false
+					cleanupIDs: false
 				}, {
-                    convertStyleToAttrs: false
-                }]
-            })
-        ],{
-            verbose: true
-        }))
-        .pipe(gulp.dest(paths.images.target));
-});
+					convertStyleToAttrs: false
+				}]
+			})
+		], {
+			verbose: true
+		}))
+		.pipe(gulp.dest(paths.images.target));
 
-gulp.task('html', function () {
+}
+
+function html() {
 	return gulp.src(paths.html.source)
 		.pipe(mustache({}, {
 			extension: '.html'
 		}).on('error', errorHandlers.js))
 		.pipe(gulp.dest(paths.html.target));
-});
 
-gulp.task('fonts', function () {
+}
+
+function fonts() {
 	return gulp.src(paths.font.source)
-        .pipe(gulp.dest(paths.font.target));
-});
+		.pipe(gulp.dest(paths.font.target));
 
-gulp.task('build', ['html', 'css:build', 'css:build:hotFix', 'js:build', 'image:min', 'fonts']);
+}
 
-gulp.task('watch', ['html', 'css:dev', 'js:dev'], function () {
-	watch(paths.html.watch, function () {
-		gulp.start(['html']);
-	});
-	watch(paths.css.watch, function () {
-		gulp.start(['css:dev']);
-	});
-	watch(paths.js.source, function () {
-		gulp.start(['js:dev']);
-	});
-});
+function watch() {
+	gulp.watch(paths.html.watch, html);
+	gulp.watch(paths.css.watch, css_dev);
+	gulp.watch(paths.js.source, js_dev);
+}
+
+exports.css_dev = css_dev;
+exports.css_build = css_build;
+exports.js_dev = js_dev;
+exports.js_build = js_build;
+exports.image_min = image_min;
+exports.html = html;
+exports.fonts = fonts;
+exports.build = gulp.parallel(html, css_build, js_build, image_min, fonts);
+exports.watch = gulp.series(gulp.parallel(html, css_dev, js_dev), watch);
